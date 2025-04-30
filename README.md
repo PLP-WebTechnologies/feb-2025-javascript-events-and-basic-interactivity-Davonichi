@@ -58,180 +58,239 @@ HTML Structure: (index.html)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Web Page</title>
+    <title>Interactive Webpage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to My Interactive Web Page!</h1>
+        <h1>Interactive Webpage with JavaScript</h1>
     </header>
 
-    <section id="gallery">
+    <section>
+        <h2>Button Click and Hover Effects</h2>
+        <button id="changeTextButton">Click me!</button>
+        <p id="hoverMessage">Hover over the button!</p>
+    </section>
+
+    <section>
         <h2>Image Gallery</h2>
-        <div class="gallery-images">
-            <img src="image1.jpg" alt="Image 1" class="gallery-img">
-            <img src="image2.jpg" alt="Image 2" class="gallery-img">
-            <img src="image3.jpg" alt="Image 3" class="gallery-img">
+        <div id="gallery">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
         </div>
     </section>
 
-    <section id="tabs">
-        <button class="tab-button" onclick="toggleTab(1)">Tab 1</button>
-        <button class="tab-button" onclick="toggleTab(2)">Tab 2</button>
-        <div class="tab-content" id="tab1">
-            <p>Content of Tab 1.</p>
+    <section>
+        <h2>Tabs</h2>
+        <div class="tabs">
+            <button class="tab" data-tab="1">Tab 1</button>
+            <button class="tab" data-tab="2">Tab 2</button>
+            <button class="tab" data-tab="3">Tab 3</button>
         </div>
-        <div class="tab-content" id="tab2">
-            <p>Content of Tab 2.</p>
+        <div class="tab-content" id="tab-1">
+            <p>Content for Tab 1</p>
+        </div>
+        <div class="tab-content" id="tab-2">
+            <p>Content for Tab 2</p>
+        </div>
+        <div class="tab-content" id="tab-3">
+            <p>Content for Tab 3</p>
         </div>
     </section>
 
-    <section id="form-validation">
+    <section>
         <h2>Form Validation</h2>
-        <form id="userForm">
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            <span id="email-error" class="error-message"></span><br>
-            
+        <form id="myForm">
+            <label for="username">Username (required):</label>
+            <input type="text" id="username" required><br>
+
+            <label for="email">Email (required):</label>
+            <input type="email" id="email" required><br>
+
             <label for="password">Password (min 8 characters):</label>
-            <input type="password" id="password" required>
-            <span id="password-error" class="error-message"></span><br>
-            
+            <input type="password" id="password" required><br>
+
             <button type="submit">Submit</button>
         </form>
     </section>
 
-    <button id="dynamicButton">Click Me!</button>
+    <footer>
+        <p>Created with ❤️ using JavaScript</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
 
-
 CSS Styles (styles.css):
 
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
 }
 
 button {
     padding: 10px 20px;
-    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #4CAF50;
+    background-color: #45a049;
 }
 
-.gallery-images img {
-    width: 100px;
-    height: 100px;
+button:active {
+    background-color: #3e8e41;
+}
+
+#gallery img {
     margin: 10px;
+    width: 200px;
+    height: 200px;
     cursor: pointer;
-    transition: transform 0.3s;
 }
 
-.gallery-images img:hover {
-    transform: scale(1.1);
+.tabs {
+    display: flex;
+}
+
+.tab {
+    padding: 10px;
+    margin-right: 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.tab:hover {
+    background-color: #ddd;
 }
 
 .tab-content {
     display: none;
+    padding: 20px;
+    background-color: #f1f1f1;
+    margin-top: 10px;
 }
 
-.tab-content.active {
-    display: block;
+input {
+    padding: 8px;
+    margin: 10px 0;
+    width: 200px;
 }
 
-.error-message {
+.error {
     color: red;
     font-size: 12px;
 }
 
-button.active {
-    background-color: #008CBA;
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
-
 
 JavaScript (script.js):
 
-// Event Handling
+// 1. Event Handling 🎈
 
-// Button click to change text and color
-document.getElementById("dynamicButton").addEventListener("click", function() {
-    this.innerHTML = "You clicked me!";
-    this.style.backgroundColor = "#f44336";
+document.getElementById('changeTextButton').addEventListener('click', function() {
+    document.getElementById('hoverMessage').textContent = 'You clicked the button!';
 });
 
-// Hover effect for gallery images
-const galleryImages = document.querySelectorAll(".gallery-img");
-galleryImages.forEach(img => {
-    img.addEventListener("mouseover", () => {
-        img.style.transform = "scale(1.1)";
+document.getElementById('changeTextButton').addEventListener('mouseover', function() {
+    document.getElementById('hoverMessage').textContent = 'Hovering over the button!';
+});
+
+// 2. Image Gallery 🎮
+
+const images = document.querySelectorAll('#gallery img');
+images.forEach(image => {
+    image.addEventListener('click', function() {
+        alert('Image clicked: ' + image.alt);
     });
-    img.addEventListener("mouseout", () => {
-        img.style.transform = "scale(1)";
+});
+
+// 3. Tabs Functionality 🎮
+
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        const tabNumber = tab.getAttribute('data-tab');
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => {
+            content.style.display = 'none';
+        });
+        document.getElementById('tab-' + tabNumber).style.display = 'block';
     });
 });
 
-// Keypress detection
-document.addEventListener("keypress", (e) => {
-    console.log("Key pressed: " + e.key);
-});
+// 4. Form Validation 📋✅
 
-// Double-click action
-document.getElementById("dynamicButton").addEventListener("dblclick", function() {
-    alert("Double-clicked!");
-});
-
-// Form Validation
-const form = document.getElementById("userForm");
-form.addEventListener("submit", function(event) {
+const form = document.getElementById('myForm');
+form.addEventListener('submit', function(event) {
     let valid = true;
-    
-    // Email validation
-    const email = document.getElementById("email");
-    const emailError = document.getElementById("email-error");
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!email.value.match(emailPattern)) {
-        emailError.textContent = "Please enter a valid email address.";
+    let username = document.getElementById('username').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+
+    if (!username) {
+        alert('Username is required');
         valid = false;
-    } else {
-        emailError.textContent = "";
     }
 
-    // Password validation
-    const password = document.getElementById("password");
-    const passwordError = document.getElementById("password-error");
-    if (password.value.length < 8) {
-        passwordError.textContent = "Password must be at least 8 characters.";
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email || !emailPattern.test(email)) {
+        alert('Please enter a valid email');
         valid = false;
-    } else {
-        passwordError.textContent = "";
     }
 
-    // If validation fails, prevent form submission
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters long');
+        valid = false;
+    }
+
     if (!valid) {
         event.preventDefault();
     }
 });
 
-// Tabs interaction
-function toggleTab(tabNumber) {
-    document.querySelectorAll(".tab-content").forEach(tab => {
-        tab.classList.remove("active");
-    });
-    document.getElementById("tab" + tabNumber).classList.add("active");
-}
+// 5. Secret Action - Double Click or Long Press 🤫
 
-// Real-time feedback while typing in the password field
-const passwordField = document.getElementById("password");
-passwordField.addEventListener("input", () => {
-    if (passwordField.value.length < 8) {
-        passwordField.style.borderColor = "red";
-    } else {
-        passwordField.style.borderColor = "green";
-    }
+let timer;
+document.getElementById('changeTextButton').addEventListener('mousedown', function() {
+    timer = setTimeout(function() {
+        alert('Long press detected!');
+    }, 1000); // Trigger long press after 1 second
+});
+
+document.getElementById('changeTextButton').addEventListener('mouseup', function() {
+    clearTimeout(timer);
+});
+
+document.getElementById('changeTextButton').addEventListener('dblclick', function() {
+    alert('Double click detected!');
 });
